@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>LtsvHelper</id>
+    <version>0.0.1</version>
+    <authors>tnakamura</authors>
+    <owners>tnakamura</owners>
+    <projectUrl>https://github.com/tnakamura/LtsvHelper</projectUrl>
+    <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A library for reading and writing LTSV file.</description>
+    <language>en-US</language>
+    <tags>LTSV</tags>
+  </metadata>
+  <files>
+    <file src=".\bin\Release\LtsvHelper.dll" target="lib" />
+    <file src=".\bin\Release\LtsvHelper.xml" target="lib" />
+  </files>
+</package>
