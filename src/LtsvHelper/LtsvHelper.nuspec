@@ -6,7 +6,7 @@
     <authors>tnakamura</authors>
     <owners>tnakamura</owners>
     <projectUrl>https://github.com/tnakamura/LtsvHelper</projectUrl>
-    <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+    <licenseUrl>https://raw.githubusercontent.com/tnakamura/LtsvHelper/master/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A library for reading and writing LTSV file.</description>
     <language>en-US</language>
