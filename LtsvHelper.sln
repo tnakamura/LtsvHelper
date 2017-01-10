@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7EB77E91-4123-48D1-9C9D-3219B0ED7A94}"
 EndProject
@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LtsvHelper", "src\LtsvHelpe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{D6AA65C8-C4E2-4A0E-8E01-D852715E4C69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LtsvHelper.Tests", "test\LtsvHelper.Tests\LtsvHelper.Tests.csproj", "{916B3D04-0B64-4EE8-836D-A61512F94BA0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LtsvHelper.Tests", "test\LtsvHelper.Tests\LtsvHelper.Tests.csproj", "{918607F0-DB92-47CB-9F0B-2EF82F92C310}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,16 +21,16 @@ Global
 		{E83067B8-4DF9-4AB6-A325-6E7581298D7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E83067B8-4DF9-4AB6-A325-6E7581298D7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E83067B8-4DF9-4AB6-A325-6E7581298D7A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{916B3D04-0B64-4EE8-836D-A61512F94BA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{916B3D04-0B64-4EE8-836D-A61512F94BA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{916B3D04-0B64-4EE8-836D-A61512F94BA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{916B3D04-0B64-4EE8-836D-A61512F94BA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{918607F0-DB92-47CB-9F0B-2EF82F92C310}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{918607F0-DB92-47CB-9F0B-2EF82F92C310}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{918607F0-DB92-47CB-9F0B-2EF82F92C310}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{918607F0-DB92-47CB-9F0B-2EF82F92C310}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E83067B8-4DF9-4AB6-A325-6E7581298D7A} = {7EB77E91-4123-48D1-9C9D-3219B0ED7A94}
-		{916B3D04-0B64-4EE8-836D-A61512F94BA0} = {D6AA65C8-C4E2-4A0E-8E01-D852715E4C69}
+		{918607F0-DB92-47CB-9F0B-2EF82F92C310} = {D6AA65C8-C4E2-4A0E-8E01-D852715E4C69}
 	EndGlobalSection
 EndGlobal

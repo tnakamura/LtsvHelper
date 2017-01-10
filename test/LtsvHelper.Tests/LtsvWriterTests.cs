@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Text;
 using System.IO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace LtsvHelper.Tests
 {
-    [TestClass]
     public class LtsvWriterTests
     {
-        [TestMethod]
+        [Fact]
         public void WriteFieldTest()
         {
             var sb = new StringBuilder();
@@ -20,10 +19,10 @@ namespace LtsvHelper.Tests
                 ltsvWriter.NextRecord();
             }
 
-            StringAssert.Contains(sb.ToString(), "name:ichiro\tage:42");
+            Assert.Equal("name:ichiro\tage:42\r\n", sb.ToString());
         }
 
-        [TestMethod]
+        [Fact]
         public void WriteFieldTTest()
         {
             var sb = new StringBuilder();
@@ -35,10 +34,10 @@ namespace LtsvHelper.Tests
                 ltsvWriter.NextRecord();
             }
 
-            Assert.AreEqual(sb.ToString(), "name:kagawa\tage:26\r\n");
+            Assert.Equal("name:kagawa\tage:26\r\n", sb.ToString());
         }
 
-        [TestMethod]
+        [Fact]
         public void NextRecordTest()
         {
             var sb = new StringBuilder();
@@ -53,10 +52,10 @@ namespace LtsvHelper.Tests
                 ltsvWriter.NextRecord();
             }
 
-            Assert.AreEqual(sb.ToString(), "name:kagawa\tage:26\r\nname:honda\tage:31\r\n");
+            Assert.Equal("name:kagawa\tage:26\r\nname:honda\tage:31\r\n", sb.ToString());
         }
 
-        [TestMethod]
+        [Fact]
         public void WriteRecordTest()
         {
             var sb = new StringBuilder();
@@ -71,7 +70,7 @@ namespace LtsvHelper.Tests
                 });
             }
 
-            Assert.AreEqual(sb.ToString(), "Number:10\tName:Kagawa\tPosition:MF\r\n");
+            Assert.Equal("Number:10\tName:Kagawa\tPosition:MF\r\n", sb.ToString());
         }
     }
 }
