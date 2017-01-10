@@ -15,6 +15,10 @@ namespace LtsvHelper
         readonly LtsvSerializer _serializer;
         readonly List<KeyValuePair<string, string>> _currentRecord;
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="LtsvWriter"/> class.
+        /// </summary>
+        /// <param name="textWriter">The writer.</param>
         public LtsvWriter(TextWriter textWriter)
         {
             _serializer = new LtsvSerializer(textWriter);
@@ -74,6 +78,11 @@ namespace LtsvHelper
         #region IDisposable Support
         private bool _disposed = false;
 
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing,
+        /// releasing, or resetting unmanaged resources.
+        /// </summary>
+        /// <param name="disposing">True if the instance needs to be disposed of.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -86,6 +95,10 @@ namespace LtsvHelper
             }
         }
 
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing,
+        /// releasing, or resetting unmanaged resources.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
