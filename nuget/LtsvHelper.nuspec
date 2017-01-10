@@ -13,7 +13,7 @@
     <tags>LTSV</tags>
   </metadata>
   <files>
-    <file src=".\bin\Release\LtsvHelper.dll" target="lib" />
-    <file src=".\bin\Release\LtsvHelper.xml" target="lib" />
+    <file src="..\src\LtsvHelper\bin\Release\LtsvHelper.dll" target="lib" />
+    <file src="..\src\LtsvHelper\bin\Release\LtsvHelper.xml" target="lib" />
   </files>
 </package>
