@@ -35,7 +35,7 @@ using (LtsvReader ltsvReader = new LtsvReader(textReader))
 
 ## License
 
-[MIT](http://opensource.org/licenses/MIT)
+[MIT](https://raw.githubusercontent.com/tnakamura/LtsvHelper/master/LICENSE)
 
 ## Author
 
