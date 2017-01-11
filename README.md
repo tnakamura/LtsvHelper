@@ -12,15 +12,71 @@ PM> Install-Package LtsvHelper
 
 ## Usage
 
-### reading LTSV file
+### Reading
+
+#### Reading all records
 
 ```c#
-using (TextReader textReader = File.OpenRead("some_path.ltsv"))
+using (TextReader textReader = new StreamReader("some_path.ltsv"))
+using (LtsvReader ltsvReader = new LtsvReader(textReader))
+{
+    IEnumerable<MyRecord> records = ltsvReader.GetRecords<MyRecord>();
+}
+```
+
+#### Reading records manualy
+
+```c#
+using (TextReader textReader = new StreamReader("some_path.ltsv"))
 using (LtsvReader ltsvReader = new LtsvReader(textReader))
 {
     while (ltsvReader.Read())
     {
-        ltsvReader.GetField("label1");  // => value1
+        MyRecord records = ltsvReader.GetRecord<MyRecord>();
+    }
+}
+```
+
+#### Reading individual fields
+
+```c#
+using (TextReader textReader = new StreamReader("some_path.ltsv"))
+using (LtsvReader ltsvReader = new LtsvReader(textReader))
+{
+    while (ltsvReader.Read())
+    {
+        string value1 = ltsvReader.GetField("label1");
+        int value2 = ltsvReader.GetField<int>("label2);
+    }
+}
+```
+
+### Writing
+
+#### Writing records manualy
+
+```c#
+using (TextWriter textWriter = new StreamWriter("some_path.ltsv"))
+using (LtsvWriter ltsvWriter = new LtsvWriter(textWriter))
+{
+    foreach (var item in list)
+    {
+        ltsvWriter.WriteRecord(item);
+    }
+}
+```
+
+#### Writing individual fields
+
+```c#
+using (TextWriter textWriter = new StreamWriter("some_path.ltsv"))
+using (LtsvWriter ltsvWriter = new LtsvWriter(textWriter))
+{
+    foreach (var item in list)
+    {
+        ltsvWriter.WriteField("label1", "value1");
+        ltsvWriter.WriteField("label2", 10);
+        ltsvWriter.NextRecord();
     }
 }
 ```
