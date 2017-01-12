@@ -56,6 +56,23 @@ namespace LtsvHelper.Tests
         }
 
         [Fact]
+        public void GetFieldTimeTest()
+        {
+            var ltsv = "begin:12:00:00\tend:13:00:00\nbegin:14:00:00\tend:15:00:00\n";
+            using (var stringReader = new StringReader(ltsv))
+            using (var ltsvReader = new LtsvReader(stringReader))
+            {
+                Assert.True(ltsvReader.Read());
+                Assert.Equal("12:00:00", ltsvReader.GetField("begin"));
+                Assert.Equal("13:00:00", ltsvReader.GetField("end"));
+                Assert.True(ltsvReader.Read());
+                Assert.Equal("14:00:00", ltsvReader.GetField("begin"));
+                Assert.Equal("15:00:00", ltsvReader.GetField("end"));
+                Assert.False(ltsvReader.Read());
+            }
+        }
+
+        [Fact]
         public void GetRecordTTest()
         {
             var ltsv = "Name:kagawa\tNumber:10\tPosition:MF\r\n";

@@ -26,7 +26,7 @@ namespace LtsvHelper
             }
 
             var fields = record.Split('\t')
-                .Select(s => s.Split(':'))
+                .Select(s => s.Split(new char[] { ':' }, 2))
                 .Where(a => a.Length == 2)
                 .ToDictionary(
                     a => a[0],
