@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Runtime.Serialization;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -88,7 +89,8 @@ namespace LtsvHelper
                 .Where(p => p.CanWrite);
             foreach (var p in properties)
             {
-                p.SetValue(record, GetField(p.PropertyType, p.Name));
+                var label = p.GetCustomAttribute<DataMemberAttribute>()?.Name ?? p.Name;
+                p.SetValue(record, GetField(p.PropertyType, label));
             }
             return record;
         }
