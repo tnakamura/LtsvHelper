@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Serialization;
 using System.IO;
 using System.Text;
 
@@ -70,7 +71,8 @@ namespace LtsvHelper
                 .Where(p => p.CanRead);
             foreach (var p in properties)
             {
-                _currentRecord.Add(new KeyValuePair<string, string>(p.Name, p.GetValue(record).ToString()));
+                var label = p.GetCustomAttribute<DataMemberAttribute>()?.Name ?? p.Name;
+                _currentRecord.Add(new KeyValuePair<string, string>(label, p.GetValue(record).ToString()));
             }
             NextRecord();
         }
