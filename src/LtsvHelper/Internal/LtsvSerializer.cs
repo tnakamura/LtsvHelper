@@ -18,16 +18,27 @@ namespace LtsvHelper
 
         public void Write(IEnumerable<KeyValuePair<string, string>> record)
         {
+            var line = ToLtsvString(record);
+            TextWriter.WriteLine(line);
+        }
+
+        private string ToLtsvString(IEnumerable<KeyValuePair<string, string>> record)
+        {
             var sb = new StringBuilder();
-            foreach (var field in record.Take(1))
+            var first = true;
+            foreach (var field in record)
             {
+                if (first)
+                {
+                    first = false;
+                }
+                else
+                {
+                    sb.Append("\t");
+                }
                 sb.Append($"{field.Key}:{StringHelper.Escape(field.Value)}");
             }
-            foreach (var field in record.Skip(1))
-            {
-                sb.Append($"\t{field.Key}:{StringHelper.Escape(field.Value)}");
-            }
-            TextWriter.WriteLine(sb);
+            return sb.ToString();
         }
 
         #region IDisposable Support
