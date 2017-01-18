@@ -66,15 +66,23 @@ namespace LtsvHelper
             return (T)Convert.ChangeType(_currentRecord[label], typeof(T));
         }
 
-        /// <summary>
-        /// Gets the field coverted to <see cref="object"/>.
-        /// </summary>
-        /// <param name="type">The type of the field.</param>
-        /// <param name="label">The label of the field.</param>
-        /// <returns>The field converted to <see cref="object"/></returns>
         object GetField(Type type, string label)
         {
             return Convert.ChangeType(_currentRecord[label], type);
+        }
+
+        bool TryGetField(Type type, string label, out object value)
+        {
+            if (_currentRecord.ContainsKey(label))
+            {
+                value = GetField(type, label);
+                return true;
+            }
+            else
+            {
+                value = null;
+                return false;
+            }
         }
 
         /// <summary>
@@ -90,7 +98,11 @@ namespace LtsvHelper
             foreach (var p in properties)
             {
                 var label = p.GetCustomAttribute<DataMemberAttribute>()?.Name ?? p.Name;
-                p.SetValue(record, GetField(p.PropertyType, label));
+                object value;
+                if (TryGetField(p.PropertyType, label, out value))
+                {
+                    p.SetValue(record, value);
+                }
             }
             return record;
         }
