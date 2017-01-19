@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
-using System.Runtime.Serialization;
+using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 
 namespace LtsvHelper
 {
@@ -97,9 +94,8 @@ namespace LtsvHelper
                 .Where(p => p.CanWrite);
             foreach (var p in properties)
             {
-                var label = p.GetCustomAttribute<DataMemberAttribute>()?.Name ?? p.Name;
                 object value;
-                if (TryGetField(p.PropertyType, label, out value))
+                if (TryGetField(p.PropertyType, p.Name, out value))
                 {
                     p.SetValue(record, value);
                 }

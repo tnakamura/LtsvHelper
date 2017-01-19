@@ -115,66 +115,12 @@ namespace LtsvHelper.Tests
             }
         }
 
-        [Fact]
-        public void GetRecordDataMemberTest()
-        {
-            var ltsv = "name:kagawa\tnumber:10\tposition:MF\r\n";
-            using (var stringReader = new StringReader(ltsv))
-            using (var ltsvReader = new LtsvReader(stringReader))
-            {
-                Assert.True(ltsvReader.Read());
-
-                var record = ltsvReader.GetRecord<Player2>();
-                Assert.Equal("kagawa", record.Name);
-                Assert.Equal(10, record.Number);
-                Assert.Equal("MF", record.Position);
-            }
-        }
-
-        [Fact]
-        public void GetRecordsDataMemberTest()
-        {
-            var ltsv = "name:kagawa\tnumber:10\tposition:MF\r\n"
-                + "number:4\tname:honda\tposition:MF\r\n"
-                + "position:FW\tnumber:9\tname:okazaki\r\n";
-            using (var stringReader = new StringReader(ltsv))
-            using (var ltsvReader = new LtsvReader(stringReader))
-            {
-                var records = ltsvReader.GetRecords<Player2>().ToList();
-                Assert.Equal(3, records.Count);
-
-                Assert.Equal("kagawa", records[0].Name);
-                Assert.Equal(10, records[0].Number);
-                Assert.Equal("MF", records[0].Position);
-
-                Assert.Equal("honda", records[1].Name);
-                Assert.Equal(4, records[1].Number);
-                Assert.Equal("MF", records[1].Position);
-
-                Assert.Equal("okazaki", records[2].Name);
-                Assert.Equal(9, records[2].Number);
-                Assert.Equal("FW", records[2].Position);
-            }
-        }
-
         class Player
         {
             public int Number { get; set; }
 
             public string Name { get; set; }
 
-            public string Position { get; set; }
-        }
-
-        class Player2
-        {
-            [DataMember(Name = "number")]
-            public int Number { get; set; }
-
-            [DataMember(Name = "name")]
-            public string Name { get; set; }
-
-            [DataMember(Name = "position")]
             public string Position { get; set; }
         }
     }
