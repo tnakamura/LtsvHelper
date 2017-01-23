@@ -21,6 +21,8 @@ namespace LtsvHelper
         /// <param name="textWriter">The writer.</param>
         public LtsvWriter(TextWriter textWriter)
         {
+            Ensure.ArgumentNotNull(textWriter, nameof(textWriter));
+
             _serializer = new LtsvSerializer(textWriter);
             _currentRecord = new List<KeyValuePair<string, string>>();
         }
@@ -32,6 +34,8 @@ namespace LtsvHelper
         /// <param name="value">The value of field</param>
         public void WriteField(string label, string value)
         {
+            Ensure.ArgumentNotNullOrEmpty(label, nameof(label));
+
             WriteField<string>(label, value);
         }
 
@@ -43,6 +47,8 @@ namespace LtsvHelper
         /// <param name="value">The value of field</param>
         public void WriteField<T>(string label, T value)
         {
+            Ensure.ArgumentNotNullOrEmpty(label, nameof(label));
+
             _currentRecord.Add(new KeyValuePair<string, string>(label, value.ToString()));
         }
 
@@ -63,7 +69,7 @@ namespace LtsvHelper
         /// <param name="record">The record to write.</param>
         public void WriteRecord<T>(T record)
         {
-            if (record == null) throw new ArgumentNullException(nameof(record));
+            Ensure.ArgumentNotNull(record, nameof(record));
 
             var properties = record.GetType()
                 .GetRuntimeProperties()

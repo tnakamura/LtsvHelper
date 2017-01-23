@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="ILtsvReader.cs" />
     <Compile Include="ILtsvWriter.cs" />
+    <Compile Include="Internal\Ensure.cs" />
     <Compile Include="Internal\LtsvParser.cs" />
     <Compile Include="LtsvReader.cs" />
     <Compile Include="Internal\LtsvSerializer.cs" />

@@ -21,6 +21,8 @@ namespace LtsvHelper
         /// <param name="textReader">The reader.</param>
         public LtsvReader(TextReader textReader)
         {
+            Ensure.ArgumentNotNull(textReader, nameof(textReader));
+
             _parser = new LtsvParser(textReader);
             _currentRecord = null;
         }
@@ -49,6 +51,8 @@ namespace LtsvHelper
         /// <returns>The raw field.</returns>
         public string GetField(string label)
         {
+            Ensure.ArgumentNotNullOrEmpty(label, nameof(label));
+
             return _currentRecord[label];
         }
 
@@ -60,6 +64,8 @@ namespace LtsvHelper
         /// <returns>The field coverted to <typeparamref name="T"/>.</returns>
         public T GetField<T>(string label)
         {
+            Ensure.ArgumentNotNullOrEmpty(label, nameof(label));
+
             return (T)Convert.ChangeType(_currentRecord[label], typeof(T));
         }
 
