@@ -32,12 +32,13 @@ namespace LtsvHelper.Configuration
 
         public LtsvPropertyMap Map(Expression<Func<T, object>> expression)
         {
-            var propertyInfo = (PropertyInfo)ReflectionHelper.GetMemberInfo(expression);
+            var propertyInfo = (PropertyInfo)ReflectionHelper.GetMember(expression);
 
             var propertyMap = new LtsvPropertyMap();
             propertyMap.PropertyInfo = propertyInfo;
             propertyMap.Setter = ReflectionHelper.CreateSetter(typeof(T), propertyInfo);
             propertyMap.Getter = ReflectionHelper.CreateGetter(typeof(T), propertyInfo);
+            propertyMap.Label(propertyInfo.Name);
 
             PropertyMaps.Add(propertyMap);
             return propertyMap;

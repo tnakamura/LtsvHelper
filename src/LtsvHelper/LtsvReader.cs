@@ -23,12 +23,8 @@ namespace LtsvHelper
         /// </summary>
         /// <param name="textReader">The reader.</param>
         public LtsvReader(TextReader textReader)
-            : this(textReader, new LtsvConfiguration())
+            : this(textReader, null)
         {
-            Ensure.ArgumentNotNull(textReader, nameof(textReader));
-
-            _parser = new LtsvParser(textReader);
-            _currentRecord = null;
         }
 
         /// <summary>
@@ -41,7 +37,7 @@ namespace LtsvHelper
 
             _parser = new LtsvParser(textReader);
             _currentRecord = null;
-            _configuration = configuration;
+            _configuration = configuration ?? new LtsvConfiguration();
         }
 
         /// <summary>
@@ -112,15 +108,14 @@ namespace LtsvHelper
         /// <returns>The record converted to <typeparamref name="T"/>.</returns>
         public T GetRecord<T>()
         {
-            var record = ReflectionHelper.CreateInstance<T>();
-            var properties = typeof(T).GetRuntimeProperties()
-                .Where(p => p.CanWrite);
-            foreach (var p in properties)
+            var classMap = _configuration.GetClassMap(typeof(T));
+            var record = (T)classMap.Constructor();
+            foreach (var p in classMap.PropertyMaps)
             {
                 object value;
-                if (TryGetField(p.PropertyType, p.Name, out value))
+                if (TryGetField(p.PropertyInfo.PropertyType, p.LabelString, out value))
                 {
-                    p.SetValue(record, value);
+                    p.Setter(record, value);
                 }
             }
             return record;

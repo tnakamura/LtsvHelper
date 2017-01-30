@@ -1,7 +1,8 @@
-﻿using System;
+﻿using LtsvHelper.Configuration;
+using System;
+using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
-using System.IO;
 using Xunit;
 
 namespace LtsvHelper.Tests
@@ -63,7 +64,7 @@ namespace LtsvHelper.Tests
             using (var stringWriter = new StringWriter(sb))
             using (var ltsvWriter = new LtsvWriter(stringWriter))
             {
-                ltsvWriter.WriteRecord(new
+                ltsvWriter.WriteRecord(new Player()
                 {
                     Number = 10,
                     Name = "Kagawa",
@@ -72,6 +73,46 @@ namespace LtsvHelper.Tests
             }
 
             Assert.Equal("Number:10\tName:Kagawa\tPosition:MF\r\n", sb.ToString());
+        }
+
+        [Fact]
+        public void FluentClassMappingTest()
+        {
+            var configuration = new LtsvConfiguration();
+            configuration.RegisterClassMap<PlayerMap>();
+
+            var sb = new StringBuilder();
+            using (var stringWriter = new StringWriter(sb))
+            using (var ltsvWriter = new LtsvWriter(stringWriter, configuration))
+            {
+                ltsvWriter.WriteRecord(new Player()
+                {
+                    Number = 10,
+                    Name = "Kagawa",
+                    Position = "MF",
+                });
+            }
+
+            Assert.Equal("Name:Kagawa\tNo:10\r\n", sb.ToString());
+        }
+
+        class Player
+        {
+            public int Number { get; set; }
+
+            public string Name { get; set; }
+
+            public string Position { get; set; }
+        }
+
+        class PlayerMap : LtsvClassMap<Player>
+        {
+            public PlayerMap()
+                : base()
+            {
+                Map(p => p.Name);
+                Map(p => p.Number).Label("No");
+            }
         }
     }
 }

@@ -24,7 +24,7 @@ namespace LtsvHelper
         /// </summary>
         /// <param name="textWriter">The writer.</param>
         public LtsvWriter(TextWriter textWriter)
-            : this(textWriter, new LtsvConfiguration())
+            : this(textWriter, null)
         {
         }
 
@@ -38,7 +38,7 @@ namespace LtsvHelper
 
             _serializer = new LtsvSerializer(textWriter);
             _currentRecord = new List<KeyValuePair<string, string>>();
-            _configuration = configuration;
+            _configuration = configuration ?? new LtsvConfiguration();
         }
 
         /// <summary>
@@ -85,13 +85,14 @@ namespace LtsvHelper
         {
             Ensure.ArgumentNotNull(record, nameof(record));
 
-            var properties = record.GetType()
-                .GetRuntimeProperties()
-                .Where(p => p.CanRead);
-            foreach (var p in properties)
+            var classMap = _configuration.GetClassMap(typeof(T));
+            foreach (var p in classMap.PropertyMaps)
             {
-                _currentRecord.Add(new KeyValuePair<string, string>(p.Name, p.GetValue(record).ToString()));
+                var label = p.LabelString;
+                var value = p.Getter(record);
+                _currentRecord.Add(new KeyValuePair<string, string>(label, value.ToString()));
             }
+
             NextRecord();
         }
 

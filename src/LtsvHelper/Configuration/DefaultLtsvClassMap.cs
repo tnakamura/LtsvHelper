@@ -17,6 +17,8 @@ namespace LtsvHelper.Configuration
 
         private void AutoMap()
         {
+            Constructor = ReflectionHelper.CreateConstructor(ClassType);
+
             var properties = ClassType.GetRuntimeProperties();
             foreach (var p in properties)
             {
@@ -26,6 +28,7 @@ namespace LtsvHelper.Configuration
                     Setter = ReflectionHelper.CreateSetter(ClassType, p),
                     Getter = ReflectionHelper.CreateGetter(ClassType, p)
                 };
+                map.LabelString = p.Name;
                 PropertyMaps.Add(map);
             }
         }

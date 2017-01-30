@@ -15,14 +15,37 @@ namespace LtsvHelper
             return Activator.CreateInstance<T>();
         }
 
-        public static MemberInfo GetMemberInfo<T>(Expression<Func<T, object>> expression)
+        public static MemberInfo GetMember<TModel>(Expression<Func<TModel, object>> expression)
         {
-            var member = expression.Body as MemberExpression;
-            if (member != null)
+            var member = GetMemberExpression(expression.Body).Member;
+            var property = member as PropertyInfo;
+            if (property != null)
             {
-                return member.Member;
+                return property;
             }
-            throw new ArgumentException($"{nameof(expression)} is not supported expression.");
+
+            var field = member as FieldInfo;
+            if (field != null)
+            {
+                return field;
+            }
+
+            throw new ArgumentException($"'{member.Name}' is not a property/field.", nameof(expression));
+        }
+
+        static MemberExpression GetMemberExpression(Expression expression)
+        {
+            MemberExpression memberExpression = null;
+            if (expression.NodeType == ExpressionType.Convert)
+            {
+                var body = (UnaryExpression)expression;
+                memberExpression = body.Operand as MemberExpression;
+            }
+            else if (expression.NodeType == ExpressionType.MemberAccess)
+            {
+                memberExpression = expression as MemberExpression;
+            }
+            return memberExpression;
         }
 
         public static Func<object> CreateConstructor(Type classType)

@@ -4,6 +4,7 @@ using System.Runtime.Serialization;
 using System.Linq;
 using System.IO;
 using Xunit;
+using LtsvHelper.Configuration;
 
 namespace LtsvHelper.Tests
 {
@@ -115,6 +116,25 @@ namespace LtsvHelper.Tests
             }
         }
 
+        [Fact]
+        public void FluentClassMappingTest()
+        {
+            var configuration = new LtsvConfiguration();
+            configuration.RegisterClassMap<PlayerMap>();
+
+            var ltsv = "name:kagawa\tNumber:10\tPosition:MF\r\n";
+            using (var stringReader = new StringReader(ltsv))
+            using (var ltsvReader = new LtsvReader(stringReader, configuration))
+            {
+                Assert.True(ltsvReader.Read());
+
+                var record = ltsvReader.GetRecord<Player>();
+                Assert.Equal("kagawa", record.Name);
+                Assert.Equal(10, record.Number);
+                Assert.Null(record.Position);
+            }
+        }
+
         class Player
         {
             public int Number { get; set; }
@@ -122,6 +142,16 @@ namespace LtsvHelper.Tests
             public string Name { get; set; }
 
             public string Position { get; set; }
+        }
+
+        class PlayerMap : LtsvClassMap<Player>
+        {
+            public PlayerMap()
+                : base()
+            {
+                Map(p => p.Number);
+                Map(p => p.Name).Label("name");
+            }
         }
     }
 }
