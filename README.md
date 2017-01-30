@@ -81,6 +81,34 @@ using (LtsvWriter ltsvWriter = new LtsvWriter(textWriter))
 }
 ```
 
+### Mapping
+
+#### Fluent Class Mapping
+
+```c#
+public class MyClassMap : LtsvClassMap<MyClass>
+{
+    public MyClassMap()
+    {
+        Map(m => m.Id);
+        Map(m => m.Name);
+    }
+}
+```
+
+##### Label
+
+```c#
+public class MyClassMap : LtsvClassMap<MyClass>
+{
+    public MyClassMap()
+    {
+        Map(m => m.Id).Label("id");
+        Map(m => m.Name).Label("name");
+    }
+}
+```
+
 ## Contribution
 
 1. Fork it
