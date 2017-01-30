@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using LtsvHelper.Configuration;
 
 namespace LtsvHelper
 {
@@ -13,6 +14,8 @@ namespace LtsvHelper
     {
         readonly LtsvParser _parser;
 
+        readonly LtsvConfiguration _configuration;
+
         IDictionary<string, string> _currentRecord;
 
         /// <summary>
@@ -20,11 +23,25 @@ namespace LtsvHelper
         /// </summary>
         /// <param name="textReader">The reader.</param>
         public LtsvReader(TextReader textReader)
+            : this(textReader, new LtsvConfiguration())
         {
             Ensure.ArgumentNotNull(textReader, nameof(textReader));
 
             _parser = new LtsvParser(textReader);
             _currentRecord = null;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of <see cref="LtsvReader"/> class.
+        /// </summary>
+        /// <param name="textReader">The reader.</param>
+        public LtsvReader(TextReader textReader, LtsvConfiguration configuration)
+        {
+            Ensure.ArgumentNotNull(textReader, nameof(textReader));
+
+            _parser = new LtsvParser(textReader);
+            _currentRecord = null;
+            _configuration = configuration;
         }
 
         /// <summary>

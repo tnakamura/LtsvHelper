@@ -38,6 +38,10 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\DefaultLtsvClassMap.cs" />
+    <Compile Include="Configuration\LtsvClassMap.cs" />
+    <Compile Include="Configuration\LtsvConfiguration.cs" />
+    <Compile Include="Configuration\LtsvPropertyMap.cs" />
     <Compile Include="ILtsvReader.cs" />
     <Compile Include="ILtsvWriter.cs" />
     <Compile Include="Internal\Ensure.cs" />

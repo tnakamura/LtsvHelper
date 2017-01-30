@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.IO;
 using System.Text;
+using LtsvHelper.Configuration;
 
 namespace LtsvHelper
 {
@@ -13,6 +14,9 @@ namespace LtsvHelper
     public class LtsvWriter : ILtsvWriter
     {
         readonly LtsvSerializer _serializer;
+
+        readonly LtsvConfiguration _configuration;
+
         readonly List<KeyValuePair<string, string>> _currentRecord;
 
         /// <summary>
@@ -20,11 +24,21 @@ namespace LtsvHelper
         /// </summary>
         /// <param name="textWriter">The writer.</param>
         public LtsvWriter(TextWriter textWriter)
+            : this(textWriter, new LtsvConfiguration())
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of <see cref="LtsvWriter"/> class.
+        /// </summary>
+        /// <param name="textWriter">The writer.</param>
+        public LtsvWriter(TextWriter textWriter, LtsvConfiguration configuration)
         {
             Ensure.ArgumentNotNull(textWriter, nameof(textWriter));
 
             _serializer = new LtsvSerializer(textWriter);
             _currentRecord = new List<KeyValuePair<string, string>>();
+            _configuration = configuration;
         }
 
         /// <summary>

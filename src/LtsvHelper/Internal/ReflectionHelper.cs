@@ -15,6 +15,16 @@ namespace LtsvHelper
             return Activator.CreateInstance<T>();
         }
 
+        public static MemberInfo GetMemberInfo<T>(Expression<Func<T, object>> expression)
+        {
+            var member = expression.Body as MemberExpression;
+            if (member != null)
+            {
+                return member.Member;
+            }
+            throw new ArgumentException($"{nameof(expression)} is not supported expression.");
+        }
+
         public static Func<object> CreateConstructor(Type classType)
         {
             var lambda = Expression.Lambda<Func<object>>(
