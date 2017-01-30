@@ -8,8 +8,15 @@ using System.Linq.Expressions;
 
 namespace LtsvHelper.Configuration
 {
+    /// <summary>
+    /// Maps class properties to LTSV fields.
+    /// </summary>
     public abstract class LtsvClassMap
     {
+        /// <summary>
+        /// Initializes a new instance of <see cref="LtsvClassMap"/> class.
+        /// </summary>
+        /// <param name="classType">The class type.</param>
         protected LtsvClassMap(Type classType)
         {
             ClassType = classType;
@@ -23,13 +30,25 @@ namespace LtsvHelper.Configuration
         internal IList<LtsvPropertyMap> PropertyMaps { get; } = new List<LtsvPropertyMap>();
     }
 
+    /// <summary>
+    /// Maps class properties/fields to LTSV fields.
+    /// </summary>
+    /// <typeparam name="T">The <see cref="Type"/> of class to map.</typeparam>
     public abstract class LtsvClassMap<T> : LtsvClassMap
     {
+        /// <summary>
+        /// Initializes a new instance of <see cref="LtsvClassMap{T}"/> class.
+        /// </summary>
         protected LtsvClassMap()
             : base(typeof(T))
         {
         }
 
+        /// <summary>
+        /// Maps a property/field to a LTSV field.
+        /// </summary>
+        /// <param name="expression">The property/field to map.</param>
+        /// <returns>The property/field mapping.</returns>
         public LtsvPropertyMap Map(Expression<Func<T, object>> expression)
         {
             var propertyInfo = (PropertyInfo)ReflectionHelper.GetMember(expression);

@@ -31,6 +31,7 @@ namespace LtsvHelper
         /// Initializes a new instance of <see cref="LtsvReader"/> class.
         /// </summary>
         /// <param name="textReader">The reader.</param>
+        /// <param name="configuration">The configuration.</param>
         public LtsvReader(TextReader textReader, LtsvConfiguration configuration)
         {
             Ensure.ArgumentNotNull(textReader, nameof(textReader));

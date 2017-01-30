@@ -32,6 +32,7 @@ namespace LtsvHelper
         /// Initializes a new instance of <see cref="LtsvWriter"/> class.
         /// </summary>
         /// <param name="textWriter">The writer.</param>
+        /// <param name="configuration">The configuration.</param>
         public LtsvWriter(TextWriter textWriter, LtsvConfiguration configuration)
         {
             Ensure.ArgumentNotNull(textWriter, nameof(textWriter));
