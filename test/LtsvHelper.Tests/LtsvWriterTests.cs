@@ -96,6 +96,28 @@ namespace LtsvHelper.Tests
             Assert.Equal("Name:Kagawa\tNo:10\r\n", sb.ToString());
         }
 
+        [Fact]
+        public void UnregisterClassMapTest()
+        {
+            var configuration = new LtsvConfiguration();
+            configuration.RegisterClassMap<PlayerMap>();
+            configuration.UnregisterClassMap<PlayerMap>();
+
+            var sb = new StringBuilder();
+            using (var stringWriter = new StringWriter(sb))
+            using (var ltsvWriter = new LtsvWriter(stringWriter, configuration))
+            {
+                ltsvWriter.WriteRecord(new Player()
+                {
+                    Number = 10,
+                    Name = "Kagawa",
+                    Position = "MF",
+                });
+            }
+
+            Assert.Equal("Number:10\tName:Kagawa\tPosition:MF\r\n", sb.ToString());
+        }
+
         class Player
         {
             public int Number { get; set; }

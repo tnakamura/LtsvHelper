@@ -135,6 +135,26 @@ namespace LtsvHelper.Tests
             }
         }
 
+        [Fact]
+        public void UnregisterClassMapTest()
+        {
+            var configuration = new LtsvConfiguration();
+            configuration.RegisterClassMap<PlayerMap>();
+            configuration.UnregisterClassMap<PlayerMap>();
+
+            var ltsv = "name:kagawa\tNumber:10\tPosition:MF\r\n";
+            using (var stringReader = new StringReader(ltsv))
+            using (var ltsvReader = new LtsvReader(stringReader, configuration))
+            {
+                Assert.True(ltsvReader.Read());
+
+                var record = ltsvReader.GetRecord<Player>();
+                Assert.Null(record.Name);
+                Assert.Equal(10, record.Number);
+                Assert.Equal("MF", record.Position);
+            }
+        }
+
         class Player
         {
             public int Number { get; set; }
