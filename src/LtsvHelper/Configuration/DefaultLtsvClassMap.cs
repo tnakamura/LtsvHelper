@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LtsvHelper.TypeConversion;
 
 namespace LtsvHelper.Configuration
 {
@@ -26,7 +27,8 @@ namespace LtsvHelper.Configuration
                 {
                     PropertyInfo = p,
                     Setter = ReflectionHelper.CreateSetter(ClassType, p),
-                    Getter = ReflectionHelper.CreateGetter(ClassType, p)
+                    Getter = ReflectionHelper.CreateGetter(ClassType, p),
+                    TypeConverter = TypeConverterFactory.GetConverter(p.PropertyType),
                 };
                 map.LabelString = p.Name;
                 PropertyMaps.Add(map);

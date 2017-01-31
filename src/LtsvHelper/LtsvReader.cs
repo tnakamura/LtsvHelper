@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using LtsvHelper.Configuration;
+using LtsvHelper.TypeConversion;
 
 namespace LtsvHelper
 {
@@ -83,25 +84,6 @@ namespace LtsvHelper
             return (T)Convert.ChangeType(_currentRecord[label], typeof(T));
         }
 
-        object GetField(Type type, string label)
-        {
-            return Convert.ChangeType(_currentRecord[label], type);
-        }
-
-        bool TryGetField(Type type, string label, out object value)
-        {
-            if (_currentRecord.ContainsKey(label))
-            {
-                value = GetField(type, label);
-                return true;
-            }
-            else
-            {
-                value = null;
-                return false;
-            }
-        }
-
         /// <summary>
         /// Gets the record coverted into <typeparamref name="T"/>.
         /// </summary>
@@ -113,9 +95,10 @@ namespace LtsvHelper
             var record = (T)classMap.Constructor();
             foreach (var p in classMap.PropertyMaps)
             {
-                object value;
-                if (TryGetField(p.PropertyInfo.PropertyType, p.LabelString, out value))
+                if (_currentRecord.ContainsKey(p.LabelString))
                 {
+                    var valueString = _currentRecord[p.LabelString];
+                    var value = p.TypeConverter.ConvertFromString(valueString, this, p);
                     p.Setter(record, value);
                 }
             }

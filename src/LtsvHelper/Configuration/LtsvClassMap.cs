@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq.Expressions;
+using LtsvHelper.TypeConversion;
 
 namespace LtsvHelper.Configuration
 {
@@ -57,6 +58,7 @@ namespace LtsvHelper.Configuration
             propertyMap.PropertyInfo = propertyInfo;
             propertyMap.Setter = ReflectionHelper.CreateSetter(typeof(T), propertyInfo);
             propertyMap.Getter = ReflectionHelper.CreateGetter(typeof(T), propertyInfo);
+            propertyMap.TypeConverter = TypeConverterFactory.GetConverter(propertyInfo.PropertyType);
             propertyMap.Label(propertyInfo.Name);
 
             PropertyMaps.Add(propertyMap);

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LtsvHelper.TypeConversion;
 
 namespace LtsvHelper.Configuration
 {
@@ -19,6 +20,8 @@ namespace LtsvHelper.Configuration
         internal Func<object, object> Getter { get; set; }
 
         internal Action<object, object> Setter { get; set; }
+
+        internal ITypeConverter TypeConverter { get; set; }
 
         /// <summary>
         /// When reading, is used to get the field.

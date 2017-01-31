@@ -91,7 +91,8 @@ namespace LtsvHelper
             {
                 var label = p.LabelString;
                 var value = p.Getter(record);
-                _currentRecord.Add(new KeyValuePair<string, string>(label, value.ToString()));
+                var valueString = p.TypeConverter.ConvertToString(value, this, p);
+                _currentRecord.Add(new KeyValuePair<string, string>(label, valueString));
             }
 
             NextRecord();
