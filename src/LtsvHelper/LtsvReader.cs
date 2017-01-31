@@ -81,7 +81,8 @@ namespace LtsvHelper
         {
             Ensure.ArgumentNotNullOrEmpty(label, nameof(label));
 
-            return (T)Convert.ChangeType(_currentRecord[label], typeof(T));
+            var field = GetField(label);
+            return (T)Convert.ChangeType(field, typeof(T));
         }
 
         /// <summary>
@@ -97,8 +98,8 @@ namespace LtsvHelper
             {
                 if (_currentRecord.ContainsKey(p.LabelString))
                 {
-                    var valueString = _currentRecord[p.LabelString];
-                    var value = p.TypeConverter.ConvertFromString(valueString, this, p);
+                    var field = GetField(p.LabelString);
+                    var value = p.TypeConverter.ConvertFromString(field, this, p);
                     p.Setter(record, value);
                 }
             }

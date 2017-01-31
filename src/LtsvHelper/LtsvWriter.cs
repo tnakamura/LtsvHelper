@@ -5,6 +5,7 @@ using System.Reflection;
 using System.IO;
 using System.Text;
 using LtsvHelper.Configuration;
+using LtsvHelper.TypeConversion;
 
 namespace LtsvHelper
 {
@@ -51,7 +52,7 @@ namespace LtsvHelper
         {
             Ensure.ArgumentNotNullOrEmpty(label, nameof(label));
 
-            WriteField<string>(label, value);
+            _currentRecord.Add(new KeyValuePair<string, string>(label, value));
         }
 
         /// <summary>
@@ -64,7 +65,7 @@ namespace LtsvHelper
         {
             Ensure.ArgumentNotNullOrEmpty(label, nameof(label));
 
-            _currentRecord.Add(new KeyValuePair<string, string>(label, value.ToString()));
+            WriteField(label, value.ToString());
         }
 
         /// <summary>
@@ -92,7 +93,7 @@ namespace LtsvHelper
                 var label = p.LabelString;
                 var value = p.Getter(record);
                 var valueString = p.TypeConverter.ConvertToString(value, this, p);
-                _currentRecord.Add(new KeyValuePair<string, string>(label, valueString));
+                WriteField(label, valueString);
             }
 
             NextRecord();
