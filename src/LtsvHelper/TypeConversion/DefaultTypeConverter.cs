@@ -7,15 +7,20 @@ using LtsvHelper.Configuration;
 
 namespace LtsvHelper.TypeConversion
 {
-    internal class DefaultTypeConverter : ITypeConverter
+    class DefaultTypeConverter : ITypeConverter
     {
-        public object ConvertFromString(string value, ILtsvReader reader, LtsvPropertyMap map)
+        public virtual object ConvertFromString(string value, ILtsvReader reader, LtsvPropertyMap map)
         {
             return Convert.ChangeType(value, map.PropertyInfo.PropertyType);
         }
 
-        public string ConvertToString(object value, ILtsvWriter writer, LtsvPropertyMap map)
+        public virtual string ConvertToString(object value, ILtsvWriter writer, LtsvPropertyMap map)
         {
+            if (value == null)
+            {
+                return string.Empty;
+            }
+
             return value.ToString();
         }
     }
