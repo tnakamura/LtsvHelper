@@ -53,7 +53,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Internal\ReflectionHelper.cs" />
     <Compile Include="Internal\StringHelper.cs" />
+    <Compile Include="TypeConversion\BoolConverter.cs" />
+    <Compile Include="TypeConversion\DateTimeConverter.cs" />
     <Compile Include="TypeConversion\DefaultTypeConverter.cs" />
+    <Compile Include="TypeConversion\GuidConverter.cs" />
+    <Compile Include="TypeConversion\Int16Converter.cs" />
     <Compile Include="TypeConversion\Int32Converter.cs" />
     <Compile Include="TypeConversion\Int64Converter.cs" />
     <Compile Include="TypeConversion\ITypeConverter.cs" />
