@@ -12,7 +12,7 @@ namespace LtsvHelper.TypeConversion
 
         static TypeConverterFactory()
         {
-            _converters.Add(typeof(bool), new BoolConverter());
+            _converters.Add(typeof(bool), new BooleanConverter());
             _converters.Add(typeof(DateTime), new DateTimeConverter());
             _converters.Add(typeof(Guid), new GuidConverter());
             _converters.Add(typeof(int), new Int32Converter());

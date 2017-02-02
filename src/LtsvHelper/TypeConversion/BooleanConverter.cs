@@ -7,7 +7,7 @@ using LtsvHelper.Configuration;
 
 namespace LtsvHelper.TypeConversion
 {
-    class BoolConverter : DefaultTypeConverter
+    class BooleanConverter : DefaultTypeConverter
     {
         public override object ConvertFromString(string value, ILtsvReader reader, LtsvPropertyMap map)
         {
