@@ -63,6 +63,7 @@
     <Compile Include="TypeConversion\Int32Converter.cs" />
     <Compile Include="TypeConversion\Int64Converter.cs" />
     <Compile Include="TypeConversion\ITypeConverter.cs" />
+    <Compile Include="TypeConversion\SingleConverter.cs" />
     <Compile Include="TypeConversion\StringConverter.cs" />
     <Compile Include="TypeConversion\TimeSpanConverter.cs" />
     <Compile Include="TypeConversion\TypeConverterFactory.cs" />

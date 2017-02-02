@@ -16,6 +16,7 @@ namespace LtsvHelper.TypeConversion
             _converters.Add(typeof(DateTime), new DateTimeConverter());
             _converters.Add(typeof(DateTimeOffset), new DateTimeOffsetConverter());
             _converters.Add(typeof(double), new DoubleConverter());
+            _converters.Add(typeof(float), new SingleConverter());
             _converters.Add(typeof(Guid), new GuidConverter());
             _converters.Add(typeof(int), new Int32Converter());
             _converters.Add(typeof(long), new Int64Converter());
