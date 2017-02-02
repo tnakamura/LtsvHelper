@@ -15,6 +15,7 @@ namespace LtsvHelper.TypeConversion
             _converters.Add(typeof(bool), new BooleanConverter());
             _converters.Add(typeof(DateTime), new DateTimeConverter());
             _converters.Add(typeof(DateTimeOffset), new DateTimeOffsetConverter());
+            _converters.Add(typeof(decimal), new DecimalConverter());
             _converters.Add(typeof(double), new DoubleConverter());
             _converters.Add(typeof(float), new SingleConverter());
             _converters.Add(typeof(Guid), new GuidConverter());
