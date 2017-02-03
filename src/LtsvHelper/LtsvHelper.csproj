@@ -54,6 +54,8 @@
     <Compile Include="Internal\ReflectionHelper.cs" />
     <Compile Include="Internal\StringHelper.cs" />
     <Compile Include="TypeConversion\BooleanConverter.cs" />
+    <Compile Include="TypeConversion\ByteConverter.cs" />
+    <Compile Include="TypeConversion\CharConverter.cs" />
     <Compile Include="TypeConversion\DateTimeConverter.cs" />
     <Compile Include="TypeConversion\DateTimeOffsetConverter.cs" />
     <Compile Include="TypeConversion\DecimalConverter.cs" />
@@ -64,10 +66,14 @@
     <Compile Include="TypeConversion\Int32Converter.cs" />
     <Compile Include="TypeConversion\Int64Converter.cs" />
     <Compile Include="TypeConversion\ITypeConverter.cs" />
+    <Compile Include="TypeConversion\SByteConverter.cs" />
     <Compile Include="TypeConversion\SingleConverter.cs" />
     <Compile Include="TypeConversion\StringConverter.cs" />
     <Compile Include="TypeConversion\TimeSpanConverter.cs" />
     <Compile Include="TypeConversion\TypeConverterFactory.cs" />
+    <Compile Include="TypeConversion\UInt16Converter.cs" />
+    <Compile Include="TypeConversion\UInt32Converter.cs" />
+    <Compile Include="TypeConversion\UInt64Converter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

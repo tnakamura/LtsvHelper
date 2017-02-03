@@ -13,6 +13,8 @@ namespace LtsvHelper.TypeConversion
         static TypeConverterFactory()
         {
             _converters.Add(typeof(bool), new BooleanConverter());
+            _converters.Add(typeof(byte), new ByteConverter());
+            _converters.Add(typeof(char), new CharConverter());
             _converters.Add(typeof(DateTime), new DateTimeConverter());
             _converters.Add(typeof(DateTimeOffset), new DateTimeOffsetConverter());
             _converters.Add(typeof(decimal), new DecimalConverter());
@@ -21,9 +23,13 @@ namespace LtsvHelper.TypeConversion
             _converters.Add(typeof(Guid), new GuidConverter());
             _converters.Add(typeof(int), new Int32Converter());
             _converters.Add(typeof(long), new Int64Converter());
+            _converters.Add(typeof(sbyte), new SByteConverter());
             _converters.Add(typeof(short), new Int16Converter());
             _converters.Add(typeof(string), new StringConverter());
             _converters.Add(typeof(TimeSpan), new TimeSpanConverter());
+            _converters.Add(typeof(uint), new UInt32Converter());
+            _converters.Add(typeof(ulong), new UInt64Converter());
+            _converters.Add(typeof(ushort), new UInt16Converter());
         }
 
         public static ITypeConverter GetConverter(Type type)
