@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.IO;
 using System.Text;
 using LtsvHelper.Configuration;
-using LtsvHelper.TypeConversion;
 
 namespace LtsvHelper
 {
@@ -97,6 +95,20 @@ namespace LtsvHelper
             }
 
             NextRecord();
+        }
+
+        /// <summary>
+		/// Writes the list of records to the LTSV file.
+        /// </summary>
+		/// <param name="records">The list of records to write.</param>
+        public void WriteRecords<T>(IEnumerable<T> records)
+        {
+            Ensure.ArgumentNotNull(records, nameof(records));
+
+            foreach (var record in records)
+            {
+                WriteRecord(record);
+            }
         }
 
         #region IDisposable Support

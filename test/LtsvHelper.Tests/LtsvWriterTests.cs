@@ -1,5 +1,6 @@
 ﻿using LtsvHelper.Configuration;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
@@ -116,6 +117,37 @@ namespace LtsvHelper.Tests
             }
 
             Assert.Equal("Number:10\tName:Kagawa\tPosition:MF\r\n", sb.ToString());
+        }
+
+        [Fact]
+        public void WriteRecordsTest()
+        {
+            var players = new List<Player>()
+            {
+                new Player()
+                {
+                    Number = 10,
+                    Name = "Kagawa",
+                    Position = "MF",
+                },
+                new Player()
+                {
+                    Number = 4,
+                    Name = "Honda",
+                    Position = "MF",
+                },
+            };
+
+            var sb = new StringBuilder();
+            using (var stringWriter = new StringWriter(sb))
+            using (var ltsvWriter = new LtsvWriter(stringWriter))
+            {
+                ltsvWriter.WriteRecords(players);
+            }
+
+            Assert.Equal(
+                "Number:10\tName:Kagawa\tPosition:MF\r\nNumber:4\tName:Honda\tPosition:MF\r\n",
+                sb.ToString());
         }
 
         class Player

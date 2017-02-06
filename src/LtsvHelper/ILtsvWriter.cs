@@ -38,5 +38,12 @@ namespace LtsvHelper
         /// <typeparam name="T">The type of the record.</typeparam>
         /// <param name="record">The record to write.</param>
         void WriteRecord<T>(T record);
+
+        /// <summary>
+		/// Writes the list of records to the LTSV file.
+        /// </summary>
+        /// <typeparam name="T">The type of the record.</typeparam>
+		/// <param name="records">The list of records to write.</param>
+        void WriteRecords<T>(IEnumerable<T> records);
     }
 }
