@@ -19,6 +19,8 @@ namespace LtsvHelper
 
         IDictionary<string, string> _currentRecord;
 
+        bool _hasBeenRead = false;
+
         /// <summary>
         /// Initializes a new instance of <see cref="LtsvReader"/> class.
         /// </summary>
@@ -49,6 +51,7 @@ namespace LtsvHelper
         public bool Read()
         {
             _currentRecord = _parser.Read();
+            _hasBeenRead = true;
             if (_currentRecord != null)
             {
                 return true;
@@ -56,6 +59,14 @@ namespace LtsvHelper
             else
             {
                 return false;
+            }
+        }
+
+        private void CheckHasBeenRead()
+        {
+            if (!_hasBeenRead)
+            {
+                throw new LtsvReaderException("You must call read on the reader before accessing its data.");
             }
         }
 
@@ -67,6 +78,8 @@ namespace LtsvHelper
         public string GetField(string label)
         {
             Ensure.ArgumentNotNullOrEmpty(label, nameof(label));
+
+            CheckHasBeenRead();
 
             return _currentRecord[label];
         }
@@ -92,6 +105,8 @@ namespace LtsvHelper
         /// <returns>The record converted to <typeparamref name="T"/>.</returns>
         public T GetRecord<T>()
         {
+            CheckHasBeenRead();
+
             var classMap = _configuration.GetClassMap(typeof(T));
             var record = (T)classMap.Constructor();
             foreach (var p in classMap.PropertyMaps)

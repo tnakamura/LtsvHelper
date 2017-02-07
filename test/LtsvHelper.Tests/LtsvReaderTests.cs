@@ -155,6 +155,48 @@ namespace LtsvHelper.Tests
             }
         }
 
+        [Fact]
+        public void GetField_throws_LtsvReaderException_when_has_not_been_read()
+        {
+            var ltsv = "Name:kagawa\tNumber:10\tPosition:MF\r\n";
+            using (var stringReader = new StringReader(ltsv))
+            using (var ltsvReader = new LtsvReader(stringReader))
+            {
+                Assert.Throws<LtsvReaderException>(() =>
+                {
+                    ltsvReader.GetField("Name");
+                });
+            }
+        }
+
+        [Fact]
+        public void GetFieldT_throws_LtsvReaderException_when_has_not_been_read()
+        {
+            var ltsv = "Name:kagawa\tNumber:10\tPosition:MF\r\n";
+            using (var stringReader = new StringReader(ltsv))
+            using (var ltsvReader = new LtsvReader(stringReader))
+            {
+                Assert.Throws<LtsvReaderException>(() =>
+                {
+                    ltsvReader.GetField<int>("Number");
+                });
+            }
+        }
+
+        [Fact]
+        public void GetRecord_throws_LtsvReaderException_when_has_not_been_read()
+        {
+            var ltsv = "Name:kagawa\tNumber:10\tPosition:MF\r\n";
+            using (var stringReader = new StringReader(ltsv))
+            using (var ltsvReader = new LtsvReader(stringReader))
+            {
+                Assert.Throws<LtsvReaderException>(() =>
+                {
+                    ltsvReader.GetRecord<Player>();
+                });
+            }
+        }
+
         class Player
         {
             public int Number { get; set; }
