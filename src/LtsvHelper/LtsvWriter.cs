@@ -72,8 +72,15 @@ namespace LtsvHelper
         /// </summary>
         public void NextRecord()
         {
-            _serializer.Write(_currentRecord);
-            _currentRecord.Clear();
+            try
+            {
+                _serializer.Write(_currentRecord);
+                _currentRecord.Clear();
+            }
+            catch (Exception ex) when ((ex as LtsvHelperException) == null)
+            {
+                throw new LtsvWriterException("An unexpected error occurred.", ex);
+            }
         }
 
         /// <summary>

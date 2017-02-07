@@ -150,6 +150,30 @@ namespace LtsvHelper.Tests
                 sb.ToString());
         }
 
+        [Fact]
+        public void NextRecord_throws_LtsvWriterException_when_an_unexpected_error_occurred()
+        {
+            using (var textWriter = new DummyTextWriter())
+            using (var ltsvWriter = new LtsvWriter(textWriter))
+            {
+                ltsvWriter.WriteField("foo", "bar");
+                Assert.Throws<LtsvWriterException>(() =>
+                {
+                    ltsvWriter.NextRecord();
+                });
+            }
+        }
+
+        class DummyTextWriter : TextWriter
+        {
+            public override Encoding Encoding => Encoding.UTF8;
+
+            public override void Write(char value)
+            {
+                throw new IOException("error");
+            }
+        }
+
         class Player
         {
             public int Number { get; set; }
