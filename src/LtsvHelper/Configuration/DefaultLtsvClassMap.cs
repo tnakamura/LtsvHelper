@@ -23,15 +23,7 @@ namespace LtsvHelper.Configuration
             var properties = ClassType.GetRuntimeProperties();
             foreach (var p in properties)
             {
-                var map = new LtsvPropertyMap()
-                {
-                    PropertyInfo = p,
-                    Setter = ReflectionHelper.CreateSetter(ClassType, p),
-                    Getter = ReflectionHelper.CreateGetter(ClassType, p),
-                    TypeConverter = TypeConverterFactory.GetConverter(p.PropertyType),
-                };
-                map.LabelString = p.Name;
-                PropertyMaps.Add(map);
+                AddPropertyMap(ClassType, p);
             }
         }
     }

@@ -23,6 +23,8 @@ namespace LtsvHelper.Configuration
 
         internal ITypeConverter TypeConverter { get; set; }
 
+        internal TypeConverterOptions TypeConverterOptions { get; set; } = new TypeConverterOptions();
+
         /// <summary>
         /// When reading, is used to get the field.
         /// When writing, sets the label of the field.

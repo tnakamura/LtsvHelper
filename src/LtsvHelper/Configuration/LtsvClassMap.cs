@@ -29,6 +29,19 @@ namespace LtsvHelper.Configuration
         internal Func<object> Constructor { get; set; }
 
         internal IList<LtsvPropertyMap> PropertyMaps { get; } = new List<LtsvPropertyMap>();
+
+        internal LtsvPropertyMap AddPropertyMap(Type classType, PropertyInfo propertyInfo)
+        {
+            var propertyMap = new LtsvPropertyMap();
+            propertyMap.PropertyInfo = propertyInfo;
+            propertyMap.Setter = ReflectionHelper.CreateSetter(classType, propertyInfo);
+            propertyMap.Getter = ReflectionHelper.CreateGetter(classType, propertyInfo);
+            propertyMap.TypeConverter = TypeConverterFactory.GetConverter(propertyInfo.PropertyType);
+            propertyMap.Label(propertyInfo.Name);
+
+            PropertyMaps.Add(propertyMap);
+            return propertyMap;
+        }
     }
 
     /// <summary>
@@ -53,16 +66,7 @@ namespace LtsvHelper.Configuration
         public LtsvPropertyMap Map(Expression<Func<T, object>> expression)
         {
             var propertyInfo = (PropertyInfo)ReflectionHelper.GetMember(expression);
-
-            var propertyMap = new LtsvPropertyMap();
-            propertyMap.PropertyInfo = propertyInfo;
-            propertyMap.Setter = ReflectionHelper.CreateSetter(typeof(T), propertyInfo);
-            propertyMap.Getter = ReflectionHelper.CreateGetter(typeof(T), propertyInfo);
-            propertyMap.TypeConverter = TypeConverterFactory.GetConverter(propertyInfo.PropertyType);
-            propertyMap.Label(propertyInfo.Name);
-
-            PropertyMaps.Add(propertyMap);
-            return propertyMap;
+            return AddPropertyMap(typeof(T), propertyInfo);
         }
     }
 }

@@ -14,9 +14,24 @@ namespace LtsvHelper.TypeConversion
             if (value != null)
             {
                 TimeSpan result;
-                if (TimeSpan.TryParse(value, out result))
+                if ((map.TypeConverterOptions?.Format != null) &&
+                    (map.TypeConverterOptions?.CultureInfo != null))
                 {
-                    return result;
+                    if (TimeSpan.TryParseExact(
+                        value,
+                        map.TypeConverterOptions.Format,
+                        map.TypeConverterOptions.CultureInfo,
+                        out result))
+                    {
+                        return result;
+                    }
+                }
+                else
+                {
+                    if (TimeSpan.TryParse(value, out result))
+                    {
+                        return result;
+                    }
                 }
             }
             return base.ConvertFromString(value, reader, map);
