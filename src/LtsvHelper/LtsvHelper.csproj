@@ -1,90 +1,30 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E83067B8-4DF9-4AB6-A325-6E7581298D7A}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LtsvHelper</RootNamespace>
-    <AssemblyName>LtsvHelper</AssemblyName>
-    <DefaultLanguage>ja-JP</DefaultLanguage>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageTags>LTSV</PackageTags>
+    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+    <FileVersion>0.1.0.0</FileVersion>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageReleaseNotes>.NET Standard 2.0 support</PackageReleaseNotes>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/tnakamura/LtsvHelper.git</RepositoryUrl>
+    <Version>0.1.0</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>tnakamura</Authors>
+    <Company />
+    <Copyright>tnakamura</Copyright>
+    <PackageProjectUrl>https://github.com/tnakamura/LtsvHelper</PackageProjectUrl>
+    <Description>A library for reading and writing LTSV file.</Description>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/tnakamura/LtsvHelper/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\LtsvHelper.XML</DocumentationFile>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netstandard2.0\LtsvHelper.xml</DocumentationFile>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\LtsvHelper.XML</DocumentationFile>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard2.0\LtsvHelper.xml</DocumentationFile>
   </PropertyGroup>
-  <ItemGroup>
-    <!-- A reference to the entire .NET Framework is automatically included -->
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Configuration\DefaultLtsvClassMap.cs" />
-    <Compile Include="Configuration\LtsvClassMap.cs" />
-    <Compile Include="Configuration\LtsvConfiguration.cs" />
-    <Compile Include="Configuration\LtsvPropertyMap.cs" />
-    <Compile Include="ILtsvReader.cs" />
-    <Compile Include="ILtsvWriter.cs" />
-    <Compile Include="Internal\Ensure.cs" />
-    <Compile Include="Internal\LtsvParser.cs" />
-    <Compile Include="LtsvHelperException.cs" />
-    <Compile Include="LtsvReader.cs" />
-    <Compile Include="Internal\LtsvSerializer.cs" />
-    <Compile Include="LtsvReaderException.cs" />
-    <Compile Include="LtsvWriter.cs" />
-    <Compile Include="LtsvWriterException.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Internal\ReflectionHelper.cs" />
-    <Compile Include="Internal\StringHelper.cs" />
-    <Compile Include="TypeConversion\BooleanConverter.cs" />
-    <Compile Include="TypeConversion\ByteConverter.cs" />
-    <Compile Include="TypeConversion\CharConverter.cs" />
-    <Compile Include="TypeConversion\DateTimeConverter.cs" />
-    <Compile Include="TypeConversion\DateTimeOffsetConverter.cs" />
-    <Compile Include="TypeConversion\DecimalConverter.cs" />
-    <Compile Include="TypeConversion\DefaultTypeConverter.cs" />
-    <Compile Include="TypeConversion\DoubleConverter.cs" />
-    <Compile Include="TypeConversion\GuidConverter.cs" />
-    <Compile Include="TypeConversion\Int16Converter.cs" />
-    <Compile Include="TypeConversion\Int32Converter.cs" />
-    <Compile Include="TypeConversion\Int64Converter.cs" />
-    <Compile Include="TypeConversion\ITypeConverter.cs" />
-    <Compile Include="TypeConversion\SByteConverter.cs" />
-    <Compile Include="TypeConversion\SingleConverter.cs" />
-    <Compile Include="TypeConversion\StringConverter.cs" />
-    <Compile Include="TypeConversion\TimeSpanConverter.cs" />
-    <Compile Include="TypeConversion\TypeConverterFactory.cs" />
-    <Compile Include="TypeConversion\TypeConverterOptions.cs" />
-    <Compile Include="TypeConversion\UInt16Converter.cs" />
-    <Compile Include="TypeConversion\UInt32Converter.cs" />
-    <Compile Include="TypeConversion\UInt64Converter.cs" />
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>
