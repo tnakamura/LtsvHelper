@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7EB77E91-4123-48D1-9C9D-3219B0ED7A94}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1A826226-994E-437C-A4B7-676030E7921A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LtsvHelper", "src\LtsvHelper\LtsvHelper.csproj", "{E83067B8-4DF9-4AB6-A325-6E7581298D7A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LtsvHelper", "src\LtsvHelper\LtsvHelper.csproj", "{5CC79ADD-B831-434D-806F-19B551B4CBED}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{D6AA65C8-C4E2-4A0E-8E01-D852715E4C69}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{A2A4EE48-CF64-4DE7-98AF-2DF9A8ACDD7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LtsvHelper.Tests", "test\LtsvHelper.Tests\LtsvHelper.Tests.csproj", "{918607F0-DB92-47CB-9F0B-2EF82F92C310}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LtsvHelper.Tests", "test\LtsvHelper.Tests\LtsvHelper.Tests.csproj", "{699D21CD-583E-44DF-A069-0E9041D98C6C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,20 +17,23 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E83067B8-4DF9-4AB6-A325-6E7581298D7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E83067B8-4DF9-4AB6-A325-6E7581298D7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E83067B8-4DF9-4AB6-A325-6E7581298D7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E83067B8-4DF9-4AB6-A325-6E7581298D7A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{918607F0-DB92-47CB-9F0B-2EF82F92C310}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{918607F0-DB92-47CB-9F0B-2EF82F92C310}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{918607F0-DB92-47CB-9F0B-2EF82F92C310}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{918607F0-DB92-47CB-9F0B-2EF82F92C310}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CC79ADD-B831-434D-806F-19B551B4CBED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CC79ADD-B831-434D-806F-19B551B4CBED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CC79ADD-B831-434D-806F-19B551B4CBED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CC79ADD-B831-434D-806F-19B551B4CBED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{699D21CD-583E-44DF-A069-0E9041D98C6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{699D21CD-583E-44DF-A069-0E9041D98C6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{699D21CD-583E-44DF-A069-0E9041D98C6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{699D21CD-583E-44DF-A069-0E9041D98C6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{E83067B8-4DF9-4AB6-A325-6E7581298D7A} = {7EB77E91-4123-48D1-9C9D-3219B0ED7A94}
-		{918607F0-DB92-47CB-9F0B-2EF82F92C310} = {D6AA65C8-C4E2-4A0E-8E01-D852715E4C69}
+		{5CC79ADD-B831-434D-806F-19B551B4CBED} = {1A826226-994E-437C-A4B7-676030E7921A}
+		{699D21CD-583E-44DF-A069-0E9041D98C6C} = {A2A4EE48-CF64-4DE7-98AF-2DF9A8ACDD7F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1CC49906-4156-4CED-AF0C-91FA736377B6}
 	EndGlobalSection
 EndGlobal
