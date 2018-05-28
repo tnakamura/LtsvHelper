@@ -24,7 +24,7 @@ namespace LtsvHelper
                 return null;
             }
 
-            var fields= Parse(record);
+            var fields = Parse(record);
             return fields;
         }
 
@@ -49,7 +49,7 @@ namespace LtsvHelper
                 return null;
             }
 
-            var fields= Parse(record);
+            var fields = Parse(record);
             return fields;
         }
 

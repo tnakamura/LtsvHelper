@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace LtsvHelper
@@ -31,6 +29,15 @@ namespace LtsvHelper
         /// This needs to be called to serialize the row to the writer.
         /// </summary>
         void NextRecord();
+
+        /// <summary>
+        /// Ends writing of the current record and starts a new record.
+        /// This needs to be called to serialize the row to the writer.
+        /// </summary>
+        /// <returns>
+        /// A task that represents the asynchronous write operation.
+        /// </returns>
+        Task NextRecordAsync();
 
         /// <summary>
         /// Writes the record to the LTSV file.
