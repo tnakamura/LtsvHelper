@@ -22,6 +22,12 @@ namespace LtsvHelper
             TextWriter.WriteLine(line);
         }
 
+        public async Task WriteAsync(IEnumerable<KeyValuePair<string, string>> record)
+        {
+            var line = ToLtsvString(record);
+            await TextWriter.WriteLineAsync(line).ConfigureAwait(false);
+        }
+
         private string ToLtsvString(IEnumerable<KeyValuePair<string, string>> record)
         {
             var sb = new StringBuilder();

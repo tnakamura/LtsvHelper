@@ -1,9 +1,8 @@
 ﻿using LtsvHelper.Configuration;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization;
 using System.Text;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace LtsvHelper.Tests
@@ -53,6 +52,24 @@ namespace LtsvHelper.Tests
                 ltsvWriter.WriteField("name", "honda");
                 ltsvWriter.WriteField("age", 31);
                 ltsvWriter.NextRecord();
+            }
+
+            Assert.Equal("name:kagawa\tage:26\r\nname:honda\tage:31\r\n", sb.ToString());
+        }
+
+        [Fact]
+        public async Task NextRecordAsyncTest()
+        {
+            var sb = new StringBuilder();
+            using (var stringWriter = new StringWriter(sb))
+            using (var ltsvWriter = new LtsvWriter(stringWriter))
+            {
+                ltsvWriter.WriteField("name", "kagawa");
+                ltsvWriter.WriteField("age", 26);
+                await ltsvWriter.NextRecordAsync();
+                ltsvWriter.WriteField("name", "honda");
+                ltsvWriter.WriteField("age", 31);
+                await ltsvWriter.NextRecordAsync();
             }
 
             Assert.Equal("name:kagawa\tage:26\r\nname:honda\tage:31\r\n", sb.ToString());

@@ -1,9 +1,8 @@
-﻿using System;
+﻿using LtsvHelper.Configuration;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.IO;
-using System.Text;
-using LtsvHelper.Configuration;
+using System.Threading.Tasks;
 
 namespace LtsvHelper
 {
@@ -75,6 +74,26 @@ namespace LtsvHelper
             try
             {
                 _serializer.Write(_currentRecord);
+                _currentRecord.Clear();
+            }
+            catch (Exception ex) when ((ex as LtsvHelperException) == null)
+            {
+                throw new LtsvWriterException("An unexpected error occurred.", ex);
+            }
+        }
+
+        /// <summary>
+        /// Ends writing of the current record and starts a new record.
+        /// This needs to be called to serialize the row to the writer.
+        /// </summary>
+        /// <returns>
+        /// A task that represents the asynchronous write operation.
+        /// </returns>
+        public async Task NextRecordAsync()
+        {
+            try
+            {
+                await _serializer.WriteAsync(_currentRecord).ConfigureAwait(false);
                 _currentRecord.Clear();
             }
             catch (Exception ex) when ((ex as LtsvHelperException) == null)
