@@ -46,7 +46,7 @@ using (LtsvReader ltsvReader = new LtsvReader(textReader))
     while (ltsvReader.Read())
     {
         string value1 = ltsvReader.GetField("label1");
-        int value2 = ltsvReader.GetField<int>("label2);
+        int value2 = ltsvReader.GetField<int>("label2");
     }
 }
 ```
