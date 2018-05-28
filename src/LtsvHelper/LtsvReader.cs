@@ -1,10 +1,8 @@
-﻿using System;
+﻿using LtsvHelper.Configuration;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Reflection;
-using LtsvHelper.Configuration;
-using LtsvHelper.TypeConversion;
+using System.Threading.Tasks;
 
 namespace LtsvHelper
 {
@@ -51,6 +49,24 @@ namespace LtsvHelper
         public bool Read()
         {
             _currentRecord = _parser.Read();
+            _hasBeenRead = true;
+            if (_currentRecord != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Advances the reader to the next record.
+        /// </summary>
+        /// <returns>True if there are more records, otherwise false.</returns>
+        public async Task<bool> ReadAsync()
+        {
+            _currentRecord = await _parser.ReadAsync().ConfigureAwait(false);
             _hasBeenRead = true;
             if (_currentRecord != null)
             {

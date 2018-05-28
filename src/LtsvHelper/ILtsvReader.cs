@@ -18,6 +18,12 @@ namespace LtsvHelper
         bool Read();
 
         /// <summary>
+        /// Advances the reader to the next record.
+        /// </summary>
+        /// <returns>True if there are more records, otherwise false.</returns>
+        Task<bool> ReadAsync();
+
+        /// <summary>
         /// Gets the field at label.
         /// </summary>
         /// <param name="label">Tha label of the field.</param>

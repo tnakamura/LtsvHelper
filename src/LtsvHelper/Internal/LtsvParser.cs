@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace LtsvHelper
@@ -25,6 +24,12 @@ namespace LtsvHelper
                 return null;
             }
 
+            var fields= Parse(record);
+            return fields;
+        }
+
+        static IDictionary<string, string> Parse(string record)
+        {
             var fields = record.Split('\t')
                 .Select(s => s.Split(new char[] { ':' }, 2))
                 .Where(a => a.Length == 2)
@@ -32,7 +37,19 @@ namespace LtsvHelper
                     a => a[0],
                     a => StringHelper.Unescape(a[1])
                 );
+            return fields;
+        }
 
+        public async Task<IDictionary<string, string>> ReadAsync()
+        {
+            var record = await TextReader.ReadLineAsync().ConfigureAwait(false);
+
+            if (string.IsNullOrEmpty(record))
+            {
+                return null;
+            }
+
+            var fields= Parse(record);
             return fields;
         }
 

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Linq;
+﻿using LtsvHelper.Configuration;
 using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
-using LtsvHelper.Configuration;
 
 namespace LtsvHelper.Tests
 {
@@ -20,6 +18,19 @@ namespace LtsvHelper.Tests
                 Assert.True(ltsvReader.Read());
                 Assert.True(ltsvReader.Read());
                 Assert.False(ltsvReader.Read());
+            }
+        }
+
+        [Fact]
+        public async Task ReadAsyncTest()
+        {
+            var ltsv = "name:kagawa\tage:26\nname:honda\tage:31\n";
+            using (var stringReader = new StringReader(ltsv))
+            using (var ltsvReader = new LtsvReader(stringReader))
+            {
+                Assert.True(await ltsvReader.ReadAsync());
+                Assert.True(await ltsvReader.ReadAsync());
+                Assert.False(await ltsvReader.ReadAsync());
             }
         }
 
