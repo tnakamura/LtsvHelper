@@ -3,13 +3,14 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageTags>ltsv</PackageTags>
-    <AssemblyVersion>0.1.0.0</AssemblyVersion>
-    <FileVersion>0.1.0.0</FileVersion>
+    <AssemblyVersion>0.2.0.0</AssemblyVersion>
+    <FileVersion>0.2.0.0</FileVersion>
     <NeutralLanguage>en</NeutralLanguage>
-    <PackageReleaseNotes>.NET Standard 2.0 support</PackageReleaseNotes>
+    <PackageReleaseNotes>- Added a `LtsvWriter.NextRecordAsync` method.
+- Added a `LtsvReader.ReadAsync` method.</PackageReleaseNotes>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/tnakamura/LtsvHelper.git</RepositoryUrl>
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>tnakamura</Authors>
     <Company />
