@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/LtsvHelper/LtsvHelper.csproj" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/LtsvHelper.Tests/LtsvHelper.Tests.csproj" />
+  </Folder>
+</Solution>
